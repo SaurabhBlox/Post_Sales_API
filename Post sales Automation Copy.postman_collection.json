@@ -1,0 +1,1775 @@
+{
+	"info": {
+		"_postman_id": "e016b60f-efdc-4042-a255-40d585e152bd",
+		"name": "Post sales Automation Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29668677",
+		"_collection_link": "https://dark-satellite-518151.postman.co/workspace/My-Workspace~be7e10ac-7814-4059-84e0-295a521988a6/collection/29668677-e016b60f-efdc-4042-a255-40d585e152bd?action=share&source=collection_link&creator=29668677"
+	},
+	"item": [
+		{
+			"name": "add customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    \r",
+							"    \r",
+							"    pm.collectionVariables.set(\"user_id\", jsonData.data[0].user_id);\r",
+							"    pm.collectionVariables.set(\"name\", jsonData.data[0].name);\r",
+							"    pm.collectionVariables.set(\"email\", jsonData.data[0].email);\r",
+							"    pm.collectionVariables.set(\"mobile\", jsonData.data[0].mobile);\r",
+							"    \r",
+							"    console.log(\"User ID: \" + jsonData.data[0].user_id);\r",
+							"    console.log(\"Name: \" + jsonData.data[0].name);\r",
+							"    console.log(\"Email: \" + jsonData.data[0].email);\r",
+							"    console.log(\"Mobile: \" + jsonData.data[0].mobile);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXV0aGFwaS5xYWFscGhhLmJsb3guY28uaW4vdjEvZ2V0X3Rva2VuIiwiaWF0IjoxNzE4NjgyMjEzLCJleHAiOjQ4NDA3NDYyMTMsIm5iZiI6MTcxODY4MjIxMywianRpIjoiTkJvYmUzMGlLUmE4VWpXWiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.otM6q-F7T_X7OSnssxwtAe19WgUK8xZMbSfx1_mMtS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{Customer_email}}\",\n    \"mobile\": \"{{Customer_mobile}}\",\n    \"country_code\": \"91\",\n    \"name\": \"{{Customer_name}}\",\n    \"location\": \"mumbai\",\n    \"user_type\": \"customer\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/auth/v1/signup",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"auth",
+						"v1",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rmsignin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXV0aGFwaS5xYWFscGhhLmJsb3guY28uaW4vdjEvZ2V0X3Rva2VuIiwiaWF0IjoxNzE4NjgyMjEzLCJleHAiOjQ4NDA3NDYyMTMsIm5iZiI6MTcxODY4MjIxMywianRpIjoiTkJvYmUzMGlLUmE4VWpXWiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.otM6q-F7T_X7OSnssxwtAe19WgUK8xZMbSfx1_mMtS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXV0aGFwaS5kZXZhbHBoYS5ibG94LmNvLmluL3YxL2dldF90b2tlbiIsImlhdCI6MTY2MjcyNTY1NCwiZXhwIjoxNjYyNzMyODU0LCJuYmYiOjE2NjI3MjU2NTQsImp0aSI6InRyMlpBbEhPY0JaN0VPU0QiLCJzdWIiOiI1IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.VqDUbCKLmgs4pxZWQYWkCTUF2twxp-kuv8_--hFYD_E",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mobile\": \"8130582647\",\r\n    \"country_code\": \"91\",\r\n    \"device\": {\r\n        \"deviceToken\": \"xxxxxxxxxxxxxxxxx\",\r\n        \"deviceId\": \"9BDD22D9-54B8-4BF8-B3AD-A20314D5C84E\",\r\n        \"deviceInfo\": \"iPhone 12 mini (iOS 15.4.1)\",\r\n        \"deviceType\": \"IOS\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/rm/v5/rmsignin",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"rm",
+						"v5",
+						"rmsignin"
+					],
+					"query": [
+						{
+							"key": "Authorization header",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXV0aGFwaS5xYWFscGhhLmJsb3guY28uaW4vdjEvZ2V0X3Rva2VuIiwiaWF0IjoxNjY1NDcxMDUyLCJleHAiOjE2NjU0NzgyNTIsIm5iZiI6MTY2NTQ3MTA1MiwianRpIjoiWDE0WGxsZGhyQ20xUFA3OSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.OwUqglreAJqlFliAPd8m6qeYR3kZiT2mHEtwQGqfASE",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rmsend_otp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"OTP\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.log(jsonData.data.otp)\r",
+							"    pm.collectionVariables.set(\"otp\", jsonData.data.otp);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXV0aGFwaS5xYWFscGhhLmJsb3guY28uaW4vdjEvZ2V0X3Rva2VuIiwiaWF0IjoxNzE4NjgyMjEzLCJleHAiOjQ4NDA3NDYyMTMsIm5iZiI6MTcxODY4MjIxMywianRpIjoiTkJvYmUzMGlLUmE4VWpXWiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.otM6q-F7T_X7OSnssxwtAe19WgUK8xZMbSfx1_mMtS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mobile\": \"8130582647\",\r\n    \"device_id\": \"9BDD22D9-54B8-4BF8-B3AD-A20314D5C84E\",\r\n    \"country_code\": \"91\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/rm/v5/rmsend_otp",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"rm",
+						"v5",
+						"rmsend_otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify_otp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ctoken\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.log(jsonData.data.ctoken)\r",
+							"    pm.collectionVariables.set(\"ctoken\", jsonData.data.ctoken);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXV0aGFwaS5xYWFscGhhLmJsb3guY28uaW4vdjEvZ2V0X3Rva2VuIiwiaWF0IjoxNzE4NjgyMjEzLCJleHAiOjQ4NDA3NDYyMTMsIm5iZiI6MTcxODY4MjIxMywianRpIjoiTkJvYmUzMGlLUmE4VWpXWiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.otM6q-F7T_X7OSnssxwtAe19WgUK8xZMbSfx1_mMtS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"otp\": \"{{otp}}\",\n    \"mobile\": \"8130582647\",\n    \"country_code\": \"91\",\n    \"device_id\":\"9BDD22D9-54B8-4BF8-B3AD-A20314D5C84E\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/rm/v5/rmverify_otp",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"rm",
+						"v5",
+						"rmverify_otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enquiry - Contact RM",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Enquiry Id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.log(jsonData.id)\r",
+							"    pm.collectionVariables.set(\"id\", jsonData.id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXV0aGFwaS5xYWFscGhhLmJsb3guY28uaW4vdjEvZ2V0X3Rva2VuIiwiaWF0IjoxNzE4NjgyMjEzLCJleHAiOjQ4NDA3NDYyMTMsIm5iZiI6MTcxODY4MjIxMywianRpIjoiTkJvYmUzMGlLUmE4VWpXWiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.otM6q-F7T_X7OSnssxwtAe19WgUK8xZMbSfx1_mMtS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"mobile\": \"{{mobile}}\",\r\n    \"country_code\": \"91\",\r\n    \"name\": \"{{name}}\",\r\n    \"content\": \" Testing comment\",\r\n    \"project_id\": {{Project_Id}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/enquiry/v2/contact_rm",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"enquiry",
+						"v2",
+						"contact_rm"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "tony@example.com",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "9087654321",
+							"disabled": true
+						},
+						{
+							"key": "country_code",
+							"value": "91",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Tony Hanks",
+							"disabled": true
+						},
+						{
+							"key": "content",
+							"value": "want to contact",
+							"disabled": true
+						},
+						{
+							"key": "project_id",
+							"value": "8",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign RM",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXV0aGFwaS5xYWFscGhhLmJsb3guY28uaW4vdjEvZ2V0X3Rva2VuIiwiaWF0IjoxNzE4NjgyMjEzLCJleHAiOjQ4NDA3NDYyMTMsIm5iZiI6MTcxODY4MjIxMywianRpIjoiTkJvYmUzMGlLUmE4VWpXWiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.otM6q-F7T_X7OSnssxwtAe19WgUK8xZMbSfx1_mMtS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {YOUR_AUTH_KEY}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ctoken\": \"{{ctoken}}\",\n    \"enquiry_id\": \"{{id}}\",\n    \"rm_id\": 1677\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/rm/v2/assign_rm",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"rm",
+						"v2",
+						"assign_rm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enquiry List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Capture enquiry_no_id and project_id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    \r",
+							"    \r",
+							"    pm.collectionVariables.set(\"enquiry_no_id\", jsonData.enquiry[0].enquiry_no_id);\r",
+							"    pm.collectionVariables.set(\"project_id\", jsonData.enquiry[0].project_id);\r",
+							"    \r",
+							"    \r",
+							"    console.log(\"Enquiry No ID: \" + jsonData.enquiry[0].enquiry_no_id);\r",
+							"    console.log(\"Project ID: \" + jsonData.enquiry[0].project_id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXV0aGFwaS5xYWFscGhhLmJsb3guY28uaW4vdjEvZ2V0X3Rva2VuIiwiaWF0IjoxNzE4NjgyMjEzLCJleHAiOjQ4NDA3NDYyMTMsIm5iZiI6MTcxODY4MjIxMywianRpIjoiTkJvYmUzMGlLUmE4VWpXWiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.otM6q-F7T_X7OSnssxwtAe19WgUK8xZMbSfx1_mMtS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {YOUR_AUTH_KEY}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ctoken\": \"{{ctoken}}\",\n    \"customer_id\":\"{{user_id}}\",\n    \"tab_id\": \"2\"\n\n\n\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/rm/v5/all_enquiry",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"rm",
+						"v5",
+						"all_enquiry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crm/brokerage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.log(jsonData.brokerageAgreementId)\r",
+							"    pm.collectionVariables.set(\"brokerageAgreementId\", jsonData.brokerageAgreementId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "c_token",
+						"value": "7155ea529696abcc0d7d6c61bf8597d9",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ladder\": true,\n    \"aop\": true,\n    \"brokerageMetric\": \"UNIT_COUNT\",\n    \"linkedProjects\": [\n        \n    ],\n    \"developerId\": \"\",\n    \"validity\": {\n        \"start\": \"2019-01-01\",\n        \"end\": \"2025-01-01\"\n    },\n    \"rungs\": [\n        {\n            \"minLimit\": 1,\n            \"maxLimit\": 2,\n            \"brokeragePercent\": 5\n        },\n        {\n            \"minLimit\": 3,\n            \"maxLimit\": 4,\n            \"brokeragePercent\": 10\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/brokerage/{{project_id}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"brokerage",
+						"{{project_id}}"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTU3NzcyNTQsImV4cCI6MTcxNTg2MzY1NCwidXNlcl9pZCI6MTgyNywibmFtZSI6IlNhdXJhYmggb2poYSIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIiwicm9sZXMiOls0XSwiZ3JvdXBzIjpbXX0.WPzooHwQOQ84tdWurhJbnvsN6gQ9M3Rtk59o1j6-lk4",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crm/activateBrokerage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "c_token",
+						"value": "7155ea529696abcc0d7d6c61bf8597d9",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/activateBrokerage/{{project_id}}/{{brokerageAgreementId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"activateBrokerage",
+						"{{project_id}}",
+						"{{brokerageAgreementId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crm/costSheet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"test name\", function () {\r",
+							"    var jsonData1 = pm.response.json();\r",
+							"    console.log(jsonData1.costSheetId)\r",
+							"    pm.collectionVariables.set(\"costSheetId\", jsonData1.costSheetId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "c_token",
+						"value": "7155ea529696abcc0d7d6c61bf8597d9",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"agreementValue\":\"5000000\",\n    \"agreementValueBreakdown\": [{\n        \"id\": \"1\",\n        \"name\": \"parking\",\n        \"rate\": 5000000,\n        \"unitCount\": 1,\n        \"totalAmount\": 5000000\n    }],\n    \"totalVariableCost\": 1000000,\n    \"costBreakdownBreakdown\": [{\n        \"id\": \"2\",\n        \"name\": \"xyz\",\n        \"rate\": 1000000,\n        \"unitCount\": 1,\n        \"totalAmount\": 1000000\n    }],\n    \"totalCost\": 6000000\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/costSheet/{{enquiry_no_id}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"costSheet",
+						"{{enquiry_no_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crm/createBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.log(jsonData.bookingId)\r",
+							"    pm.collectionVariables.set(\"bookingId\", jsonData.bookingId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "c_token",
+						"value": "7155ea529696abcc0d7d6c61bf8597d9",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"costSheetId\": \"{{costSheetId}}\",\n    \"dateOfBooking\": \"{{Date_of_Booking}}\",\n    \"rmId\": {{RM_Id}},\n    \"projectId\": {{project_id}},\n    \"towerId\": {{Tower_Id}},\n    \"propertyName\": \"{{Property_name}}\",\n    \"enquiryId\":\"{{enquiry_no_id}}\"\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/createBooking",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"createBooking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCustomers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "BeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTU3NzI3OTUsImV4cCI6MTcxNTg1OTE5NSwidXNlcl9pZCI6MTgyNywibmFtZSI6IlNhdXJhYmggb2poYSIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIiwicm9sZXMiOls0XSwiZ3JvdXBzIjpbXX0.6rfxasPSdqYjSGZF4gapHxubHv0QxjGMeXnSj8zNpaw",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bookingId\": \"{{bookingId}}\",\n    \"customersList\": [\n        {\n            \"name\": \"{{Applicant_name}}\",\n            \"phone\": {{Applicant_phone}},\n            \"emailId\": \"{{Applicant_email}}\",\n            \"address\": \"Address\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/createCustomers",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"createCustomers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllUsersForRole",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/ui/getAllUsersForRole?roleId=29",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"ui",
+						"getAllUsersForRole"
+					],
+					"query": [
+						{
+							"key": "roleId",
+							"value": "29"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "<jwt_token>",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"collectionManagerId\": 827\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/updateBooking/{{bookingId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"updateBooking",
+						"{{bookingId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPassback",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"bookingId\": \"{{bookingId}}\",\n  \"amount\": \"{{Passback_amount}}\",\n  \"passbackType\": \"{{Passback_type}}\",\n  \"details\":\"Added\"\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/createPassback",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"createPassback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPassback",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/getPassback/{{bookingId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"getPassback",
+						"{{bookingId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePassback",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"bookingId\": \"{{bookingId}}\",\n  \"amount\": \"{{Passback_amount}}\",\n  \"passbackType\": \"{{Passback_type}}\",\n  \"details\": \"Comment Added\"\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/updatePassback",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"updatePassback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "<jwt_token>",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/getBooking/{{bookingId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"getBooking",
+						"{{bookingId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "setPaymentSchedule",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Payment Schedule Id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.log(jsonData.paymentScheduleId)\r",
+							"    pm.collectionVariables.set(\"paymentScheduleId\", jsonData.paymentScheduleId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "c_token",
+						"value": "7155ea529696abcc0d7d6c61bf8597d9",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"bookingId\":\"{{bookingId}}\",\n  \"breakdown\": [\n    {\n      \"dueDate\": \"2024-06-26\",\n      \"amountPayable\": 1000000,\n      \"percentOfTotal\": 0,\n      \"details\": \"first payment\",\n      \"initiateBrokeragePayment\": false,\n      \"breakdown\": {\n        \"baseAmount\": 1000000,\n        \"tds\": 0,\n        \"gst\": 0\n      }\n    }, {\n      \"dueDate\": \"2024-07-26\",\n      \"amountPayable\": 500000,\n      \"percentOfTotal\": 0,\n      \"details\": \"sdr\",\n      \"initiateBrokeragePayment\": false,\n      \"breakdown\": {\n        \"baseAmount\": 500000,\n        \"tds\": 0,\n        \"gst\": 0\n      }\n    }, {\n      \"dueDate\": \"2024-08-26\",\n      \"amountPayable\": 400000,\n      \"percentOfTotal\": 0,\n      \"details\": \"10% payment\",\n      \"initiateBrokeragePayment\": true,\n      \"breakdown\": {\n        \"baseAmount\": 400000,\n        \"tds\": 0,\n        \"gst\": 0\n      }\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/setPaymentSchedule",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"setPaymentSchedule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authoriseBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/authoriseBooking/{{bookingId}}/True",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"authoriseBooking",
+						"{{bookingId}}",
+						"True"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPaymentSchedule",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Capture all installmentIds\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var breakdown = jsonData.breakdown;\r",
+							"    \r",
+							"    // Loop through the breakdown array and capture all installmentIds\r",
+							"    for (var i = 0; i < breakdown.length; i++) {\r",
+							"        pm.collectionVariables.set(\"installmentId_\" + (i+1), breakdown[i].installmentId);\r",
+							"        console.log(\"Installment ID \" + (i+1) + \": \" + breakdown[i].installmentId);\r",
+							"    }\r",
+							"    \r",
+							"});",
+							"pm.test(\"Capture paymentId from the response\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.collectionVariables.set(\"paymentId\", jsonData.paymentId);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "c_token",
+						"value": "7155ea529696abcc0d7d6c61bf8597d9",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/getPaymentSchedule/{{paymentScheduleId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"getPaymentSchedule",
+						"{{paymentScheduleId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStatus installment 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "c_token",
+						"value": "7155ea529696abcc0d7d6c61bf8597d9",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\" : true,\n    \"paymentStatus\": \"PAID\",\n    \"errorMessage\": \"\"\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/updateStatus/{{paymentId}}/installment/{{installmentId_1}}/PAID",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"updateStatus",
+						"{{paymentId}}",
+						"installment",
+						"{{installmentId_1}}",
+						"PAID"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStatus installment 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "c_token",
+						"value": "7155ea529696abcc0d7d6c61bf8597d9",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\" : true,\n    \"paymentStatus\": \"PAID\",\n    \"errorMessage\": \"\"\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/updateStatus/{{paymentId}}/installment/{{installmentId_2}}/PAID",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"updateStatus",
+						"{{paymentId}}",
+						"installment",
+						"{{installmentId_2}}",
+						"PAID"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStatus installment 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "c_token",
+						"value": "7155ea529696abcc0d7d6c61bf8597d9",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\" : true,\n    \"paymentStatus\": \"PAID\",\n    \"errorMessage\": \"\"\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/updateStatus/{{paymentId}}/installment/{{installmentId_3}}/PAID",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"updateStatus",
+						"{{paymentId}}",
+						"installment",
+						"{{installmentId_3}}",
+						"PAID"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generateInvoice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "c_token",
+						"value": "a452c1d15bb6b84a8a71895e30b4f675"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "<jwt_token>"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"invoiceAmount\": {{Invoice_amount}},\n    \"bookingId\": \"{{bookingId}}\"\n}"
+				},
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/generateInvoice",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"generateInvoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllInvoicesForBooking Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTg3ODk4NjIsImV4cCI6MTcyMTM4MTg2MiwidXNlcl9pZCI6MTg1MiwibmFtZSI6IlNhdXJhYmggVGVzdGluZyIsImVtYWlsIjoic2F1cmFiaC5vamhhQGJsb3gueHl6IiwicGhvbmUiOiI4Mjg3Mzg1NTYzIn0.rqHevMsdmQdcdoHfricJu2q8vi3REC2ewXWMLMnyyS8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer xyz"
+					}
+				],
+				"url": {
+					"raw": "https://api.qa.blox.co.in/crm/getAllInvoicesForBooking/{{bookingId}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"qa",
+						"blox",
+						"co",
+						"in"
+					],
+					"path": [
+						"crm",
+						"getAllInvoicesForBooking",
+						"{{bookingId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "brokerageAgreementId",
+			"value": ""
+		},
+		{
+			"key": "costSheetId",
+			"value": ""
+		},
+		{
+			"key": "bookingId",
+			"value": ""
+		},
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "mobile",
+			"value": ""
+		},
+		{
+			"key": "otp",
+			"value": ""
+		},
+		{
+			"key": "ctoken",
+			"value": ""
+		},
+		{
+			"key": "id",
+			"value": ""
+		},
+		{
+			"key": "project_id",
+			"value": ""
+		},
+		{
+			"key": "user_id",
+			"value": ""
+		},
+		{
+			"key": "enquiry_no_id",
+			"value": ""
+		},
+		{
+			"key": "installmentId_1",
+			"value": ""
+		},
+		{
+			"key": "installmentId_2",
+			"value": ""
+		},
+		{
+			"key": "installmentId_3",
+			"value": ""
+		},
+		{
+			"key": "paymentScheduleId",
+			"value": ""
+		},
+		{
+			"key": "paymentId",
+			"value": ""
+		}
+	]
+}
